@@ -37,8 +37,33 @@
   }
 }
 
+/* Responsive Utilities */
+.desktop-only {
+  display: block !important;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
 /* Mobile responsive fixes */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  .mobile-only {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+  }
+  
   #about,
   #projects {
     flex-direction: column !important;
@@ -46,6 +71,7 @@
     justify-content: center !important;
     gap: 2rem !important;
     padding: 2rem 1rem !important;
+    min-height: auto !important;
   }
   
   #about > div,
@@ -55,9 +81,31 @@
     flex: 1 1 100% !important;
   }
   
-  /* Center ProfileCard on mobile */
-  #about > div:last-child {
-    display: flex !important;
-    justify-content: center !important;
+  .mobile-project-card {
+    width: 100% !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Force hide specific desktop elements */
+  #projects .desktop-only {
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* Tablet and Desktop */
+@media screen and (min-width: 769px) {
+  .desktop-only {
+    display: block !important;
+  }
+  
+  .mobile-only {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
   }
 }

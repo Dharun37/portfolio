@@ -12,6 +12,7 @@ import JavaIcon from './components/JavaIcon';
 import Shuffle from './components/Shuffle';
 import CardSwap, { Card } from './components/CardSwap';
 import GlareHover from './components/GlareHover';
+import './App.css';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -306,7 +307,7 @@ function App() {
         </div>
 
         {/* Right Side - ProfileCard */}
-        <div style={{
+        <div className="desktop-only" style={{
           flex: '0 0 auto'
         }}>
           <ProfileCard
@@ -325,6 +326,61 @@ function App() {
             enableMobileTilt={false}
             onContactClick={() => window.location.href = '#contact'}
           />
+        </div>
+
+        {/* Mobile - Simple Profile */}
+        <div className="mobile-only" style={{
+          width: '100%',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+          padding: '2rem 1rem',
+          background: 'rgba(255, 255, 255, 0.05)',
+          borderRadius: '16px',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
+        }}>
+          <img 
+            src="/portAva.jpeg" 
+            alt="Dharun"
+            style={{
+              width: '120px',
+              height: '120px',
+              borderRadius: '50%',
+              border: '3px solid rgba(255, 255, 255, 0.2)',
+              objectFit: 'cover'
+            }}
+          />
+          <h3 style={{
+            fontSize: '1.5rem',
+            margin: '0.5rem 0 0 0',
+            fontWeight: '600'
+          }}>Dharun</h3>
+          <p style={{
+            fontSize: '1rem',
+            margin: 0,
+            opacity: 0.8
+          }}>Web Developer</p>
+          <p style={{
+            fontSize: '0.9rem',
+            margin: 0,
+            opacity: 0.6
+          }}>@dharun</p>
+          <button 
+            onClick={() => window.location.href = '#contact'}
+            style={{
+              marginTop: '1rem',
+              padding: '0.8rem 2rem',
+              background: 'white',
+              border: 'none',
+              borderRadius: '25px',
+              color: '#000',
+              fontSize: '1rem',
+              fontWeight: '600',
+              cursor: 'pointer'
+            }}
+          >
+            Contact Me
+          </button>
         </div>
       </div>
 
@@ -414,7 +470,7 @@ function App() {
         </div>
 
         {/* Right Side - Card Swap */}
-        <div style={{
+        <div className="desktop-only" style={{
           flex: '1 1 700px',
           height: '500px',
           position: 'relative',
@@ -544,6 +600,60 @@ function App() {
               </div>
             </Card>
           </CardSwap>
+        </div>
+
+        {/* Mobile - Simple Project Cards */}
+        <div className="mobile-only" style={{
+          width: '100%',
+          flexDirection: 'column',
+          gap: '1.5rem'
+        }}>
+          {[
+            { name: 'Job Board', image: '/project1.png', desc: 'A modern job board platform' },
+            { name: 'Simple ToDO', image: '/project2.png', desc: 'Task management application' },
+            { name: 'Loan Genius', image: '/project3.png', desc: 'Smart loan calculator' }
+          ].map((project, index) => (
+            <div 
+              key={index}
+              className="mobile-project-card"
+              style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onTouchStart={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)';
+              }}
+              onTouchEnd={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              <div style={{
+                padding: '1.5rem',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+              }}>
+                <h3 style={{
+                  fontSize: '1.3rem',
+                  margin: 0,
+                  fontWeight: '600'
+                }}>{project.name}</h3>
+                <p style={{
+                  fontSize: '0.9rem',
+                  margin: '0.5rem 0 0 0',
+                  opacity: 0.7
+                }}>{project.desc}</p>
+              </div>
+              <div style={{
+                height: '200px',
+                backgroundImage: `url(${project.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
