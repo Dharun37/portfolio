@@ -29,7 +29,7 @@ function App() {
       content: '#smooth-content',
       smooth: 1.5,
       effects: true,
-      smoothTouch: 0.1,
+      smoothTouch: false,
       normalizeScroll: true
     });
 
@@ -633,6 +633,166 @@ function App() {
           </CardSwap>
         </div>
       </div>
+
+      {/* Contact Section */}
+      <div className="full-page-section" id="contact" style={{
+        position: 'relative',
+        zIndex: 1,
+        minHeight: '60vh',
+        padding: 'clamp(3rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        width: '100%',
+        boxSizing: 'border-box',
+        textAlign: 'center'
+      }}>
+        <SplitText
+          text="Get In Touch"
+          style={{
+            fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+            fontWeight: 'bold',
+            color: 'white',
+            marginBottom: '1rem'
+          }}
+          delay={50}
+          duration={0.8}
+          ease="elastic.out(1,0.3)"
+          splitType="chars"
+          from={{ opacity: 0, y: 50 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.1}
+          rootMargin="-50px"
+          textAlign="center"
+        />
+        
+        <p style={{
+          fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+          lineHeight: '1.6',
+          opacity: 0.8,
+          maxWidth: '600px',
+          marginBottom: '2rem'
+        }}>
+          Have a question or want to work together? Feel free to reach out!
+        </p>
+
+        <div style={{
+          display: 'flex',
+          gap: '1.5rem',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          marginBottom: '2rem'
+        }}>
+          <a 
+            href="mailto:your.email@example.com"
+            style={{
+              padding: '1rem 2.5rem',
+              background: 'white',
+              color: '#000',
+              borderRadius: '30px',
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: '600',
+              transition: 'all 0.3s ease',
+              border: '2px solid white'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'transparent';
+              e.target.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'white';
+              e.target.style.color = '#000';
+            }}
+          >
+            Send Email
+          </a>
+          
+          <a 
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: '1rem 2.5rem',
+              background: 'transparent',
+              color: 'white',
+              borderRadius: '30px',
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: '600',
+              transition: 'all 0.3s ease',
+              border: '2px solid white'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'white';
+              e.target.style.color = '#000';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'transparent';
+              e.target.style.color = 'white';
+            }}
+          >
+            GitHub
+          </a>
+          
+          <a 
+            href="https://linkedin.com/in/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: '1rem 2.5rem',
+              background: 'transparent',
+              color: 'white',
+              borderRadius: '30px',
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: '600',
+              transition: 'all 0.3s ease',
+              border: '2px solid white'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'white';
+              e.target.style.color = '#000';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'transparent';
+              e.target.style.color = 'white';
+            }}
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer style={{
+        position: 'relative',
+        zIndex: 1,
+        padding: '2rem 1rem',
+        color: 'white',
+        textAlign: 'center',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        background: 'rgba(0, 0, 0, 0.2)'
+      }}>
+        <p style={{
+          margin: '0 0 0.5rem 0',
+          fontSize: '0.95rem',
+          opacity: 0.7
+        }}>
+          © {new Date().getFullYear()} Dharun. All rights reserved.
+        </p>
+        <p style={{
+          margin: 0,
+          fontSize: '0.85rem',
+          opacity: 0.5
+        }}>
+          Made with React & GSAP
+        </p>
+      </footer>
     </div>
     </div>
     
