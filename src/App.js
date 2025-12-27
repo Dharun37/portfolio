@@ -12,6 +12,7 @@ import JavaIcon from './components/JavaIcon';
 import Shuffle from './components/Shuffle';
 import CardSwap, { Card } from './components/CardSwap';
 import GlareHover from './components/GlareHover';
+import MobileCarousel from './components/MobileCarousel';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -403,7 +404,7 @@ function App() {
         flexWrap: 'wrap'
       }}>
         {/* Left Side - Text */}
-        <div style={{
+        <div className="projects-text" style={{
           flex: '1 1 400px',
           display: 'flex',
           flexDirection: 'column',
@@ -438,10 +439,40 @@ function App() {
             A collection of my recent work showcasing web development, AI applications.
           </p>
 
+          {/* Mobile - Swipeable Carousel */}
+          <div className="mobile-only" style={{
+            width: '100%',
+            margin: '1rem 0'
+          }}>
+            <MobileCarousel 
+              projects={[
+                { 
+                  name: 'Job Board', 
+                  image: '/project1.png', 
+                  desc: 'A modern job board platform connecting employers with talented professionals',
+                  tags: ['React', 'Node.js', 'MongoDB']
+                },
+                { 
+                  name: 'Simple ToDO', 
+                  image: '/project2.png', 
+                  desc: 'Intuitive task management application with a clean, minimal interface',
+                  tags: ['React', 'CSS3', 'LocalStorage']
+                },
+                { 
+                  name: 'Loan Genius', 
+                  image: '/project3.png', 
+                  desc: 'Smart loan calculator with AI-powered recommendations',
+                  tags: ['Python', 'React', 'ML']
+                }
+              ]}
+            />
+          </div>
+
           <div style={{
             display: 'flex',
             gap: '1rem',
-            marginTop: '1rem'
+            marginTop: '1rem',
+            justifyContent: 'center'
           }}>
             <GlareHover
               width="auto"
@@ -600,60 +631,6 @@ function App() {
               </div>
             </Card>
           </CardSwap>
-        </div>
-
-        {/* Mobile - Simple Project Cards */}
-        <div className="mobile-only" style={{
-          width: '100%',
-          flexDirection: 'column',
-          gap: '1.5rem'
-        }}>
-          {[
-            { name: 'Job Board', image: '/project1.png', desc: 'A modern job board platform' },
-            { name: 'Simple ToDO', image: '/project2.png', desc: 'Task management application' },
-            { name: 'Loan Genius', image: '/project3.png', desc: 'Smart loan calculator' }
-          ].map((project, index) => (
-            <div 
-              key={index}
-              className="mobile-project-card"
-              style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                overflow: 'hidden',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              onTouchStart={(e) => {
-                e.currentTarget.style.transform = 'scale(0.98)';
-              }}
-              onTouchEnd={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              <div style={{
-                padding: '1.5rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-              }}>
-                <h3 style={{
-                  fontSize: '1.3rem',
-                  margin: 0,
-                  fontWeight: '600'
-                }}>{project.name}</h3>
-                <p style={{
-                  fontSize: '0.9rem',
-                  margin: '0.5rem 0 0 0',
-                  opacity: 0.7
-                }}>{project.desc}</p>
-              </div>
-              <div style={{
-                height: '200px',
-                backgroundImage: `url(${project.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }} />
-            </div>
-          ))}
         </div>
       </div>
     </div>

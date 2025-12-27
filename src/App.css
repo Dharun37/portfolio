@@ -58,7 +58,7 @@
   }
   
   .mobile-only {
-    display: flex !important;
+    display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     height: auto !important;
@@ -68,17 +68,36 @@
   #projects {
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
-    gap: 2rem !important;
+    justify-content: flex-start !important;
+    gap: 1rem !important;
     padding: 2rem 1rem !important;
     min-height: auto !important;
   }
   
   #about > div,
-  #projects > div {
+  #projects > .projects-text {
     max-width: 100% !important;
     width: 100% !important;
-    flex: 1 1 100% !important;
+    flex: 0 0 auto !important;
+  }
+  
+  #projects .mobile-only {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Hide mobile profile card (Option 2) */
+  #about .mobile-only {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Reduce tech stack spacing on mobile */
+  #about > div {
+    gap: 0.5rem !important;
   }
   
   .mobile-project-card {
