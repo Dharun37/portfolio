@@ -54,8 +54,6 @@ function App() {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
-        height: '100vh',
         padding: '2rem 1rem',
         color: 'white',
         overflow: 'hidden'
@@ -75,7 +73,9 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          position: 'relative',
+          zIndex: 1
         }}>
         
         <SplitText
@@ -135,7 +135,9 @@ function App() {
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)'
+            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+            minHeight: '44px',
+            minWidth: '120px'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -144,6 +146,12 @@ function App() {
           onMouseLeave={(e) => {
             e.target.style.transform = 'translateY(0)';
             e.target.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
+          }}
+          onTouchStart={(e) => {
+            e.target.style.transform = 'scale(0.95)';
+          }}
+          onTouchEnd={(e) => {
+            e.target.style.transform = 'scale(1)';
           }}
           >
             Download Resume
@@ -161,7 +169,9 @@ function App() {
             fontWeight: '500',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)'
+            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+            minHeight: '44px',
+            minWidth: '120px'
           }}
           onMouseEnter={(e) => {
             e.target.style.background = 'rgba(255, 255, 255, 0.1)';
@@ -170,6 +180,14 @@ function App() {
           onMouseLeave={(e) => {
             e.target.style.background = 'rgba(255, 255, 255, 0.05)';
             e.target.style.transform = 'translateY(0)';
+          }}
+          onTouchStart={(e) => {
+            e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+            e.target.style.transform = 'scale(0.95)';
+          }}
+          onTouchEnd={(e) => {
+            e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+            e.target.style.transform = 'scale(1)';
           }}
           >
             Buy Me A Bru Coffee
@@ -253,7 +271,7 @@ function App() {
             </h3>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
               gap: '1.5rem',
               maxWidth: '500px'
             }}>
@@ -280,7 +298,9 @@ function App() {
                     background: 'rgba(255, 255, 255, 0.02)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     transition: 'all 0.3s ease',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    minHeight: '80px',
+                    minWidth: '80px'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
@@ -290,6 +310,14 @@ function App() {
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
                     e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  }}
+                  onTouchStart={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.borderColor = color;
+                  }}
+                  onTouchEnd={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                   }}
                 >
@@ -377,7 +405,15 @@ function App() {
               color: '#000',
               fontSize: '1rem',
               fontWeight: '600',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              minHeight: '44px',
+              transition: 'all 0.2s ease'
+            }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'scale(0.95)';
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.transform = 'scale(1)';
             }}
           >
             Contact Me

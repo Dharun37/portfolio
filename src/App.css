@@ -46,6 +46,42 @@
   display: none !important;
 }
 
+/* Tablet Breakpoint */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #about,
+  #projects {
+    gap: 2rem !important;
+    padding: 2rem 1.5rem !important;
+  }
+  
+  .projects-text {
+    max-width: 500px !important;
+  }
+  
+  /* Scale down CardSwap for tablets */
+  .card-swap-container {
+    transform: scale(0.8) translate(10%, 15%) !important;
+  }
+}
+
+/* Landscape Orientation - Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .full-page-section {
+    min-height: auto !important;
+    padding: 1.5rem 1rem !important;
+  }
+  
+  .hero-content {
+    padding: 1rem 0 !important;
+  }
+  
+  #about,
+  #projects {
+    min-height: auto !important;
+    padding: 1.5rem 1rem !important;
+  }
+}
+
 /* Mobile responsive fixes */
 @media screen and (max-width: 768px) {
   .desktop-only {
@@ -127,4 +163,24 @@
     height: 0 !important;
     overflow: hidden !important;
   }
+}
+
+/* Large Desktop - Prevent excessive stretching */
+@media screen and (min-width: 1920px) {
+  .full-page-section {
+    max-width: 1600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Prevent horizontal overflow */
+* {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }

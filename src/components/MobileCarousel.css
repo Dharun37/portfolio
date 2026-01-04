@@ -133,12 +133,28 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   border: none;
-  padding: 0;
+  padding: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
   transition: all 0.3s ease;
 }
 
-.carousel-dot.active {
+.carousel-dot.active::before {
   width: 24px;
   border-radius: 4px;
   background: white;
