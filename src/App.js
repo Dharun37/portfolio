@@ -427,6 +427,7 @@ function App() {
         zIndex: 1,
         minHeight: '100vh',
         padding: 'clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem)',
+        paddingBottom: 'clamp(15rem, 20vw, 20rem)',
         color: 'white',
         display: 'flex',
         flexDirection: 'row',
@@ -673,9 +674,10 @@ function App() {
       {/* Contact Section */}
       <div className="full-page-section" id="contact" style={{
         position: 'relative',
-        zIndex: 1,
+        zIndex: 10,
         minHeight: '60vh',
         padding: 'clamp(3rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)',
+        paddingTop: 'clamp(8rem, 12vw, 15rem)',
         color: 'white',
         display: 'flex',
         flexDirection: 'column',
@@ -685,26 +687,17 @@ function App() {
         margin: '0 auto',
         width: '100%',
         boxSizing: 'border-box',
-        textAlign: 'center'
+        textAlign: 'center',
+        background: '#000'
       }}>
-        <SplitText
-          text="Get In Touch"
-          style={{
-            fontSize: 'clamp(2.5rem, 7vw, 5rem)',
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: '1rem'
-          }}
-          delay={50}
-          duration={0.8}
-          ease="elastic.out(1,0.3)"
-          splitType="chars"
-          from={{ opacity: 0, y: 50 }}
-          to={{ opacity: 1, y: 0 }}
-          threshold={0.1}
-          rootMargin="-50px"
-          textAlign="center"
-        />
+        <h2 style={{
+          fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+          fontWeight: 'bold',
+          color: 'white',
+          marginBottom: '1rem'
+        }}>
+          Get In Touch
+        </h2>
         
         <p style={{
           fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
@@ -713,7 +706,7 @@ function App() {
           maxWidth: '600px',
           marginBottom: '2rem'
         }}>
-          Have a question or want to work together? Feel free to reach out!
+          Have a question? Feel free to reach out!
         </p>
 
         <div style={{
