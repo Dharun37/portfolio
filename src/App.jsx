@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SiReact, SiJavascript, SiHtml5, SiCss3, SiNodedotjs, SiMongodb, SiGit, SiPython } from 'react-icons/si';
-import FloatingLines from './components/FloatingLines.jsx';
+import Orb from './components/Orb.jsx';
 import Navbar from './components/NavBar.jsx';
 import SplitText from './components/SplitText.jsx';
 import TextType from './components/TextType.jsx';
@@ -58,122 +58,140 @@ function App() {
         color: 'white',
         overflow: 'hidden'
       }}>
-        {/* FloatingLines only in Hero section */}
-        <FloatingLines 
-          enabledWaves={['top', 'middle', 'bottom']}
-          lineCount={[5, 5, 5]}
-          lineDistance={[5, 5, 5]}
-          bendRadius={5.0}
-          bendStrength={-0.5}
-          interactive={true}
-          parallax={true}
-        />
-        
-        <div className="hero-content" style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
+        {/* Orb container with content inside */}
+        <div style={{
           position: 'relative',
-          zIndex: 1
-        }}>
-        
-        <h1 style={{
-          fontSize: 'clamp(2rem, 8vw, 6rem)',
-          fontWeight: 'bold',
-          color: 'white',
-          marginBottom: '2rem'
-        }}>
-          Hello, You!
-        </h1>
-        
-        <div style={{
-          fontSize: 'clamp(1.5rem, 5vw, 3.5rem)',
-          fontWeight: 'bold',
+          width: 'min(95vw, 95vh, 1000px)',
+          height: 'min(95vw, 95vh, 1000px)',
           display: 'flex',
           alignItems: 'center',
-          gap: '1rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          color: 'white',
-          marginBottom: '2rem'
-        }}>
-          <span>I'm Dharun, a Full Stack Developer</span>
-        </div>
-
-        <div style={{
-          display: 'flex',
-          gap: '1rem',
-          flexWrap: 'wrap',
           justifyContent: 'center'
         }}>
-          <button style={{
-            padding: 'clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 4vw, 1.5rem)',
-            background: 'white',
-            border: 'none',
-            borderRadius: '50px',
-            color: '#000',
-            fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-            minHeight: '44px',
-            minWidth: '120px'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 12px 40px 0 rgba(0, 0, 0, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
-          }}
-          onTouchStart={(e) => {
-            e.target.style.transform = 'scale(0.95)';
-          }}
-          onTouchEnd={(e) => {
-            e.target.style.transform = 'scale(1)';
-          }}
-          >
-            Download Resume
-          </button>
-
-          <button style={{
-            padding: 'clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 4vw, 1.5rem)',
-            background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(15px)',
-            WebkitBackdropFilter: 'blur(15px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '50px',
+          {/* Orb background */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0
+          }}>
+            <Orb
+              hoverIntensity={0.5}
+              rotateOnHover={true}
+              hue={0}
+              forceHoverState={false}
+              backgroundColor="#000000"
+            />
+          </div>
+          
+          {/* Content constrained inside circle */}
+          <div className="hero-content" style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 1,
+            maxWidth: '80%',
+            padding: 'clamp(0.5rem, 2vw, 2rem)',
+            textAlign: 'center'
+          }}>
+          
+          <h2 style={{
+            fontSize: 'clamp(1.2rem, 4vw, 2rem)',
+            fontWeight: 'bold',
             color: 'white',
-            fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
-            fontWeight: '500',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-            minHeight: '44px',
-            minWidth: '120px'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-            e.target.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-            e.target.style.transform = 'translateY(0)';
-          }}
-          onTouchStart={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-            e.target.style.transform = 'scale(0.95)';
-          }}
-          onTouchEnd={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-            e.target.style.transform = 'scale(1)';
-          }}
-          >
+            marginBottom: 'clamp(0.5rem, 2vw, 1rem)',
+            lineHeight: 1.1
+          }}>
+            Hi, I'm Dharun
+          </h2>
+          
+          <div style={{
+            fontSize: 'clamp(0.9rem, 2.5vw, 1.5rem)',
+            fontWeight: 'bold',
+            color: 'white',
+            marginBottom: 'clamp(1rem, 3vw, 2rem)',
+            lineHeight: 1.3
+          }}>
+            <span>A Full Stack Developer</span>
+          </div>
+
+          <div style={{
+            display: 'flex',
+            gap: 'clamp(0.5rem, 2vw, 1rem)',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
+            <button style={{
+              padding: 'clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem)',
+              background: 'white',
+              border: 'none',
+              borderRadius: '50px',
+              color: '#000',
+              fontSize: 'clamp(0.75rem, 1.8vw, 0.9rem)',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+              minHeight: '44px',
+              minWidth: '120px'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 12px 40px 0 rgba(0, 0, 0, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
+            }}
+            onTouchStart={(e) => {
+              e.target.style.transform = 'scale(0.95)';
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.transform = 'scale(1)';
+            }}
+            >
+              Download Resume
+            </button>
+
+            <button style={{
+              padding: '0.6rem 1.2rem',
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(15px)',
+              WebkitBackdropFilter: 'blur(15px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '50px',
+              color: 'white',
+              fontSize: 'clamp(0.75rem, 1.8vw, 0.9rem)',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+              minHeight: '44px',
+              minWidth: '120px'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+              e.target.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+              e.target.style.transform = 'translateY(0)';
+            }}
+            onTouchStart={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+              e.target.style.transform = 'scale(0.95)';
+            }}
+            onTouchEnd={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+              e.target.style.transform = 'scale(1)';
+            }}
+            >
             Buy Me A Bru Coffee
           </button>
+        </div>
         </div>
         </div>
       </div>
