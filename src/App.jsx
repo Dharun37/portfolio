@@ -78,25 +78,14 @@ function App() {
           zIndex: 1
         }}>
         
-        <SplitText
-          text="Hello, You!"
-          style={{
-            fontSize: 'clamp(2rem, 8vw, 6rem)',
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: '2rem'
-          }}
-          delay={100}
-          duration={0.6}
-          ease="power3.out"
-          splitType="chars"
-          from={{ opacity: 0, y: 40 }}
-          to={{ opacity: 1, y: 0 }}
-          threshold={0.1}
-          rootMargin="-100px"
-          textAlign="center"
-          onLetterAnimationComplete={handleAnimationComplete}
-        />
+        <h1 style={{
+          fontSize: 'clamp(2rem, 8vw, 6rem)',
+          fontWeight: 'bold',
+          color: 'white',
+          marginBottom: '2rem'
+        }}>
+          Hello, You!
+        </h1>
         
         <div style={{
           fontSize: 'clamp(1.5rem, 5vw, 3.5rem)',
@@ -109,14 +98,7 @@ function App() {
           color: 'white',
           marginBottom: '2rem'
         }}>
-          <span>I'm Dharun,</span>
-          <TextType 
-            text={["Web Developer", "Spider-Man", "Innovator"]}
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={true}
-            cursorCharacter="_"
-          />
+          <span>I'm Dharun, a Full Stack Developer</span>
         </div>
 
         <div style={{
