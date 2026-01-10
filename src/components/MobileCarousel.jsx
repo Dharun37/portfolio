@@ -90,13 +90,6 @@ const MobileCarousel = ({ projects }) => {
                     <button className="mobile-view-button">View Project</button>
                   </div>
                 </div>
-                <div className="mobile-project-footer">
-                  <div className="mobile-project-tags">
-                    {project.tags && project.tags.map((tag, i) => (
-                      <span key={i} className="mobile-project-tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           ))}

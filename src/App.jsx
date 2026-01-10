@@ -3,16 +3,16 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { SiReact, SiJavascript, SiHtml5, SiCss3, SiNodedotjs, SiMongodb, SiGit, SiPython } from 'react-icons/si';
-import FloatingLines from './components/FloatingLines';
-import Navbar from './components/NavBar';
-import SplitText from './components/SplitText';
-import TextType from './components/TextType';
-import ProfileCard from './components/ProfileCard';
-import JavaIcon from './components/JavaIcon';
-import Shuffle from './components/Shuffle';
-import CardSwap, { Card } from './components/CardSwap';
-import GlareHover from './components/GlareHover';
-import MobileCarousel from './components/MobileCarousel';
+import FloatingLines from './components/FloatingLines.jsx';
+import Navbar from './components/NavBar.jsx';
+import SplitText from './components/SplitText.jsx';
+import TextType from './components/TextType.jsx';
+import ProfileCard from './components/ProfileCard.jsx';
+import JavaIcon from './components/JavaIcon.jsx';
+import Shuffle from './components/Shuffle.jsx';
+import CardSwap, { Card } from './components/CardSwap.jsx';
+import GlareHover from './components/GlareHover.jsx';
+import MobileCarousel from './components/MobileCarousel.jsx';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -812,14 +812,7 @@ function App() {
           fontSize: '0.95rem',
           opacity: 0.7
         }}>
-          © {new Date().getFullYear()} Dharun. All rights reserved.
-        </p>
-        <p style={{
-          margin: 0,
-          fontSize: '0.85rem',
-          opacity: 0.5
-        }}>
-          Made with React & GSAP
+          © {new Date().getFullYear()} Dharun V All rights reserved.
         </p>
       </footer>
     </div>
