@@ -125,18 +125,18 @@ function App() {
             justifyContent: 'center'
           }}>
             <button style={{
-              padding: 'clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.8rem, 2.5vw, 1.2rem)',
+              padding: 'clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 2.5vw, 1.2rem)',
               background: 'white',
               border: 'none',
               borderRadius: '50px',
               color: '#000',
-              fontSize: 'clamp(0.75rem, 1.8vw, 0.9rem)',
+              fontSize: 'clamp(0.65rem, 1.8vw, 0.9rem)',
               fontWeight: '600',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-              minHeight: '44px',
-              minWidth: '120px'
+              minHeight: 'auto',
+              minWidth: 'auto'
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-2px)';
@@ -157,20 +157,20 @@ function App() {
             </button>
 
             <button style={{
-              padding: '0.6rem 1.2rem',
+              padding: 'clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 2.5vw, 1.2rem)',
               background: 'rgba(255, 255, 255, 0.05)',
               backdropFilter: 'blur(15px)',
               WebkitBackdropFilter: 'blur(15px)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '50px',
               color: 'white',
-              fontSize: 'clamp(0.75rem, 1.8vw, 0.9rem)',
+              fontSize: 'clamp(0.65rem, 1.8vw, 0.9rem)',
               fontWeight: '500',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-              minHeight: '44px',
-              minWidth: '120px'
+              minHeight: 'auto',
+              minWidth: 'auto'
             }}
             onMouseEnter={(e) => {
               e.target.style.background = 'rgba(255, 255, 255, 0.1)';
