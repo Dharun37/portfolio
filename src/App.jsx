@@ -124,37 +124,44 @@ function App() {
             flexWrap: 'wrap',
             justifyContent: 'center'
           }}>
-            <button style={{
-              padding: 'clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 2.5vw, 1.2rem)',
-              background: 'white',
-              border: 'none',
-              borderRadius: '50px',
-              color: '#000',
-              fontSize: 'clamp(0.65rem, 1.8vw, 0.9rem)',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-              minHeight: 'auto',
-              minWidth: 'auto'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 12px 40px 0 rgba(0, 0, 0, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
-            }}
-            onTouchStart={(e) => {
-              e.target.style.transform = 'scale(0.95)';
-            }}
-            onTouchEnd={(e) => {
-              e.target.style.transform = 'scale(1)';
-            }}
+            <a 
+              href="/Dharun's resume for portfolio.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
             >
-              Download Resume
-            </button>
+              <button style={{
+                padding: 'clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 2.5vw, 1.2rem)',
+                background: 'white',
+                border: 'none',
+                borderRadius: '50px',
+                color: '#000',
+                fontSize: 'clamp(0.65rem, 1.8vw, 0.9rem)',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                minHeight: 'auto',
+                minWidth: 'auto'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 12px 40px 0 rgba(0, 0, 0, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.3)';
+              }}
+              onTouchStart={(e) => {
+                e.target.style.transform = 'scale(0.95)';
+              }}
+              onTouchEnd={(e) => {
+                e.target.style.transform = 'scale(1)';
+              }}
+              >
+                Download Resume
+              </button>
+            </a>
 
             <button style={{
               padding: 'clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 2.5vw, 1.2rem)',
