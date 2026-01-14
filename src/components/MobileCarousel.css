@@ -61,42 +61,11 @@
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.mobile-project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 1.5rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.mobile-project-card:active .mobile-project-overlay {
-  opacity: 1;
-}
-
-.mobile-view-button {
-  background: white;
-  color: #000;
-  border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-}
-
-.mobile-project-card:active .mobile-view-button {
-  transform: translateY(0);
+.mobile-project-card:active .mobile-project-image {
+  transform: scale(0.98);
 }
 
 .mobile-project-footer {

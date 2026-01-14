@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -18,9 +18,49 @@ import './App.css';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function App() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  
+  const allProjects = [
+    { 
+      name: 'Job Board', 
+      image: '/project1.png', 
+      desc: 'A modern job board platform connecting employers with talented professionals',
+      link: 'https://github.com/Dharun37/JobBoard'
+    },
+    { 
+      name: 'Simple ToDO', 
+      image: '/project2.png', 
+      desc: 'Intuitive task management application with a clean, minimal interface',
+      link: 'https://github.com/Dharun37/fullstack-todo-app-frontend'
+    },
+    { 
+      name: 'Loan Genius', 
+      image: '/project3.png', 
+      desc: 'Smart loan calculator with AI-powered recommendations',
+      link: 'https://github.com/dharanidharansr/Ml-Loan-Approval'
+    }
+  ];
+
   const handleAnimationComplete = () => {
     console.log('All letters have animated!');
   };
+
+  useEffect(() => {
+    if (showAllProjects) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+    } else {
+      // Restore scroll position
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }, [showAllProjects]);
 
   useEffect(() => {
     // Create ScrollSmoother
@@ -349,10 +389,10 @@ function App() {
           <ProfileCard
             name="Dharun"
             title="Web Developer"
-            handle="@dharun"
+            handle="dharun"
             status="Available for work"
             contactText="Contact Me"
-            avatarUrl="/portAva.jpeg"
+            avatarUrl="/portava2.png"
             iconUrl=""
             grainUrl=""
             innerGradient="linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(51, 65, 85, 0.3) 100%)"
@@ -489,26 +529,7 @@ function App() {
             margin: '1rem 0'
           }}>
             <MobileCarousel 
-              projects={[
-                { 
-                  name: 'Job Board', 
-                  image: '/project1.png', 
-                  desc: 'A modern job board platform connecting employers with talented professionals',
-                  tags: ['React', 'Node.js', 'MongoDB']
-                },
-                { 
-                  name: 'Simple ToDO', 
-                  image: '/project2.png', 
-                  desc: 'Intuitive task management application with a clean, minimal interface',
-                  tags: ['React', 'CSS3', 'LocalStorage']
-                },
-                { 
-                  name: 'Loan Genius', 
-                  image: '/project3.png', 
-                  desc: 'Smart loan calculator with AI-powered recommendations',
-                  tags: ['Python', 'React', 'ML']
-                }
-              ]}
+              projects={allProjects}
             />
           </div>
 
@@ -518,29 +539,31 @@ function App() {
             marginTop: '1rem',
             justifyContent: 'center'
           }}>
-            <GlareHover
-              width="auto"
-              height="auto"
-              background="rgba(255, 255, 255, 0.05)"
-              borderRadius="12px"
-              borderColor="rgba(255, 255, 255, 0.2)"
-              glareColor="#ffffff"
-              glareOpacity={0.3}
-              glareAngle={-30}
-              glareSize={300}
-              transitionDuration={800}
-              playOnce={false}
-            >
-              <span style={{
-                padding: '1rem 2rem',
-                color: 'white',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                display: 'block'
-              }}>
-                View All Projects
-              </span>
-            </GlareHover>
+            <div onClick={() => setShowAllProjects(true)} style={{ cursor: 'pointer' }}>
+              <GlareHover
+                width="auto"
+                height="auto"
+                background="rgba(255, 255, 255, 0.05)"
+                borderRadius="12px"
+                borderColor="rgba(255, 255, 255, 0.2)"
+                glareColor="#ffffff"
+                glareOpacity={0.3}
+                glareAngle={-30}
+                glareSize={300}
+                transitionDuration={800}
+                playOnce={false}
+              >
+                <span style={{
+                  padding: '1rem 2rem',
+                  color: 'white',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  display: 'block'
+                }}>
+                  View All Projects
+                </span>
+              </GlareHover>
+            </div>
           </div>
         </div>
 
@@ -724,7 +747,9 @@ function App() {
           marginBottom: '2rem'
         }}>
           <a 
-            href="mailto:your.email@example.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=vdharun11@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               padding: '1rem 2.5rem',
               background: 'white',
@@ -749,7 +774,7 @@ function App() {
           </a>
           
           <a 
-            href="https://github.com/yourusername"
+            href="https://github.com/Dharun37"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -776,7 +801,7 @@ function App() {
           </a>
           
           <a 
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/dharun-vd/"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -804,23 +829,341 @@ function App() {
         </div>
       </div>
 
+      {/* All Projects Modal - Rendered at root level */}
+      {showAllProjects && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: '#000000',
+            zIndex: 99999,
+            overflow: 'auto'
+          }}
+        >
+          <div style={{
+            minHeight: '100vh',
+            padding: '80px 20px 40px 20px'
+          }}>
+            {/* Close Button */}
+            <button
+              onClick={() => setShowAllProjects(false)}
+              style={{
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                border: 'none',
+                backgroundColor: 'white',
+                color: '#000',
+                fontSize: '28px',
+                cursor: 'pointer',
+                zIndex: 100000,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(90deg) scale(1.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0) scale(1)'}
+            >
+              ×
+            </button>
+
+            <h2 style={{
+              color: 'white',
+              textAlign: 'center',
+              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+              marginBottom: '40px',
+              marginTop: 0
+            }}>
+              All Projects
+            </h2>
+
+            <div style={{
+              maxWidth: '1200px',
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
+              gap: '24px'
+            }}>
+              {allProjects.map((project, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    if (project.link) {
+                      window.open(project.link, '_blank', 'noopener,noreferrer');
+                    }
+                  }}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  }}
+                >
+                  <div style={{
+                    height: '200px',
+                    backgroundImage: `url(${project.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}>
+                    <div style={{
+                      height: '100%',
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      padding: '20px'
+                    }}>
+                      <h3 style={{
+                        color: 'white',
+                        margin: 0,
+                        fontSize: '1.5rem',
+                        fontWeight: '600'
+                      }}>
+                        {project.name}
+                      </h3>
+                    </div>
+                  </div>
+                  <div style={{ padding: '20px' }}>
+                    <p style={{
+                      color: 'rgba(255, 255, 255, 0.8)',
+                      margin: 0,
+                      lineHeight: '1.6'
+                    }}>
+                      {project.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <footer style={{
         position: 'relative',
         zIndex: 1,
-        padding: '2rem 1rem',
+        padding: '3rem 2rem',
         color: 'white',
-        textAlign: 'center',
         borderTop: '1px solid rgba(255, 255, 255, 0.1)',
         background: 'rgba(0, 0, 0, 0.2)'
       }}>
-        <p style={{
-          margin: '0 0 0.5rem 0',
-          fontSize: '0.95rem',
-          opacity: 0.7
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto'
         }}>
-          © {new Date().getFullYear()} Dharun V All rights reserved.
-        </p>
+          {/* Main Footer Content */}
+          <div className="footer-content" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '2rem',
+            marginBottom: '2rem'
+          }}>
+            {/* About */}
+            <div style={{ textAlign: 'left' }}>
+              <h3 style={{
+                fontSize: '1.3rem',
+                marginBottom: '0.75rem',
+                fontWeight: '600'
+              }}>
+                Dharun V
+              </h3>
+              <p style={{
+                fontSize: '0.85rem',
+                opacity: 0.7,
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Full Stack Developer passionate about creating beautiful and functional web applications.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{
+                fontSize: '1rem',
+                marginBottom: '0.75rem',
+                fontWeight: '600',
+                opacity: 0.9
+              }}>
+                Quick Links
+              </h4>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.6rem'
+              }}>
+                <a 
+                  href="#home"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                >
+                  Home
+                </a>
+                <a 
+                  href="#about"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                >
+                  About
+                </a>
+                <a 
+                  href="#projects"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                >
+                  Projects
+                </a>
+                <a 
+                  href="#contact"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{
+                fontSize: '1rem',
+                marginBottom: '0.75rem',
+                fontWeight: '600',
+                opacity: 0.9
+              }}>
+                Contact Info
+              </h4>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.6rem'
+              }}>
+                <a 
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=vdharun11@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    fontSize: '0.85rem',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                >
+                  vdharun11@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Follow Me */}
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{
+                fontSize: '1rem',
+                marginBottom: '0.75rem',
+                fontWeight: '600',
+                opacity: 0.9
+              }}>
+                Follow Me
+              </h4>
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                fontSize: '1.5rem'
+              }}>
+                <a 
+                  href="https://github.com/Dharun37"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                  aria-label="GitHub"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/dharun-vd/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'white'}
+                  onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}
+                  aria-label="LinkedIn"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div style={{
+            paddingTop: '1.5rem',
+            textAlign: 'center',
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            <p style={{
+              margin: 0,
+              fontSize: '0.85rem',
+              opacity: 0.6
+            }}>
+              © {new Date().getFullYear()} Dharun V. All rights reserved.
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
     </div>

@@ -75,7 +75,15 @@ const MobileCarousel = ({ projects }) => {
               key={index}
               className="mobile-carousel-slide"
             >
-              <div className="mobile-project-card">
+              <div 
+                className="mobile-project-card"
+                onClick={() => {
+                  if (project.link && !isDragging) {
+                    window.open(project.link, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="mobile-project-header">
                   <h3>{project.name}</h3>
                   <p>{project.desc}</p>
@@ -85,11 +93,7 @@ const MobileCarousel = ({ projects }) => {
                   style={{
                     backgroundImage: `url(${project.image})`
                   }}
-                >
-                  <div className="mobile-project-overlay">
-                    <button className="mobile-view-button">View Project</button>
-                  </div>
-                </div>
+                />
               </div>
             </div>
           ))}
