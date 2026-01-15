@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -13,12 +14,14 @@ import Shuffle from './components/Shuffle.jsx';
 import CardSwap, { Card } from './components/CardSwap.jsx';
 import GlareHover from './components/GlareHover.jsx';
 import MobileCarousel from './components/MobileCarousel.jsx';
+import Experience from './components/Experience.jsx';
+import Certifications from './components/Certifications.jsx';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function App() {
-  const [showAllProjects, setShowAllProjects] = useState(false);
+  const navigate = useNavigate();
   
   const allProjects = [
     { 
@@ -36,7 +39,7 @@ function App() {
     { 
       name: 'Loan Genius', 
       image: '/project3.png', 
-      desc: 'Smart loan calculator with AI-powered recommendations',
+      desc: 'An intelligent machine learning web application that predicts loan approval decisions in real-time',
       link: 'https://github.com/dharanidharansr/Ml-Loan-Approval'
     }
   ];
@@ -44,23 +47,6 @@ function App() {
   const handleAnimationComplete = () => {
     console.log('All letters have animated!');
   };
-
-  useEffect(() => {
-    if (showAllProjects) {
-      // Save current scroll position
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      // Restore scroll position
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
-  }, [showAllProjects]);
 
   useEffect(() => {
     // Create ScrollSmoother
@@ -400,7 +386,19 @@ function App() {
             showUserInfo={true}
             enableTilt={true}
             enableMobileTilt={false}
-            onContactClick={() => window.location.href = '#contact'}
+            onContactClick={() => {
+              const contactSection = document.querySelector('#contact');
+              if (contactSection) {
+                gsap.to(window, {
+                  duration: 1.5,
+                  scrollTo: {
+                    y: contactSection,
+                    autoKill: true
+                  },
+                  ease: 'power2.inOut'
+                });
+              }
+            }}
           />
         </div>
 
@@ -466,6 +464,44 @@ function App() {
             Contact Me
           </button>
         </div>
+      </div>
+
+      {/* Experience Section */}
+      <div className="full-page-section" style={{
+        position: 'relative',
+        zIndex: 1,
+        minHeight: 'auto',
+        padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem)',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        width: '100%',
+        boxSizing: 'border-box'
+      }}>
+        <Experience />
+      </div>
+
+      {/* Certifications Section */}
+      <div className="full-page-section" style={{
+        position: 'relative',
+        zIndex: 1,
+        minHeight: 'auto',
+        padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem)',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        width: '100%',
+        boxSizing: 'border-box'
+      }}>
+        <Certifications />
       </div>
 
       {/* Projects Section */}
@@ -539,7 +575,7 @@ function App() {
             marginTop: '1rem',
             justifyContent: 'center'
           }}>
-            <div onClick={() => setShowAllProjects(true)} style={{ cursor: 'pointer' }}>
+            <div onClick={() => navigate('/projects')} style={{ cursor: 'pointer' }}>
               <GlareHover
                 width="auto"
                 height="auto"
@@ -828,133 +864,6 @@ function App() {
           </a>
         </div>
       </div>
-
-      {/* All Projects Modal - Rendered at root level */}
-      {showAllProjects && (
-        <div 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: '#000000',
-            zIndex: 99999,
-            overflow: 'auto'
-          }}
-        >
-          <div style={{
-            minHeight: '100vh',
-            padding: '80px 20px 40px 20px'
-          }}>
-            {/* Close Button */}
-            <button
-              onClick={() => setShowAllProjects(false)}
-              style={{
-                position: 'fixed',
-                top: '20px',
-                right: '20px',
-                width: '50px',
-                height: '50px',
-                borderRadius: '50%',
-                border: 'none',
-                backgroundColor: 'white',
-                color: '#000',
-                fontSize: '28px',
-                cursor: 'pointer',
-                zIndex: 100000,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(90deg) scale(1.1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0) scale(1)'}
-            >
-              ×
-            </button>
-
-            <h2 style={{
-              color: 'white',
-              textAlign: 'center',
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              marginBottom: '40px',
-              marginTop: 0
-            }}>
-              All Projects
-            </h2>
-
-            <div style={{
-              maxWidth: '1200px',
-              margin: '0 auto',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
-              gap: '24px'
-            }}>
-              {allProjects.map((project, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    if (project.link) {
-                      window.open(project.link, '_blank', 'noopener,noreferrer');
-                    }
-                  }}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    borderRadius: '20px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-8px)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                  }}
-                >
-                  <div style={{
-                    height: '200px',
-                    backgroundImage: `url(${project.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}>
-                    <div style={{
-                      height: '100%',
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      padding: '20px'
-                    }}>
-                      <h3 style={{
-                        color: 'white',
-                        margin: 0,
-                        fontSize: '1.5rem',
-                        fontWeight: '600'
-                      }}>
-                        {project.name}
-                      </h3>
-                    </div>
-                  </div>
-                  <div style={{ padding: '20px' }}>
-                    <p style={{
-                      color: 'rgba(255, 255, 255, 0.8)',
-                      margin: 0,
-                      lineHeight: '1.6'
-                    }}>
-                      {project.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Footer */}
       <footer style={{

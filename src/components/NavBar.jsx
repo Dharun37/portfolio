@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import ClickSpark from './ClickSpark';
 import { gsap } from 'gsap';
@@ -7,18 +8,41 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 gsap.registerPlugin(ScrollToPlugin);
 
 function Navbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isProjectsPage = location.pathname === '/projects';
+
   const handleNavClick = (e, target) => {
     e.preventDefault();
-    const element = document.querySelector(target);
-    if (element) {
-      gsap.to(window, {
-        duration: 1.5,
-        scrollTo: {
-          y: element,
-          autoKill: true
-        },
-        ease: 'power2.inOut'
-      });
+    
+    // If on projects page, navigate home first then scroll
+    if (isProjectsPage) {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.querySelector(target);
+        if (element) {
+          gsap.to(window, {
+            duration: 1.5,
+            scrollTo: {
+              y: element,
+              autoKill: true
+            },
+            ease: 'power2.inOut'
+          });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(target);
+      if (element) {
+        gsap.to(window, {
+          duration: 1.5,
+          scrollTo: {
+            y: element,
+            autoKill: true
+          },
+          ease: 'power2.inOut'
+        });
+      }
     }
   };
 
