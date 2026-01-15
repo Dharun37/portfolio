@@ -205,6 +205,12 @@ function App() {
               minHeight: 'auto',
               minWidth: 'auto'
             }}
+            onClick={() => {
+              const projectsSection = document.getElementById('projects');
+              if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
             onMouseEnter={(e) => {
               e.target.style.background = 'rgba(255, 255, 255, 0.1)';
               e.target.style.transform = 'translateY(-2px)';
@@ -222,7 +228,7 @@ function App() {
               e.target.style.transform = 'scale(1)';
             }}
             >
-            Buy Me A Bru Coffee
+            View My Works
           </button>
         </div>
         </div>
