@@ -55,8 +55,8 @@ function App() {
       content: '#smooth-content',
       smooth: 1.5,
       effects: true,
-      smoothTouch: false,
-      normalizeScroll: true
+      smoothTouch: 0.5, // Enable smooth scrolling on mobile with lighter effect
+      normalizeScroll: false // Let mobile handle its own scroll behavior
     });
 
     return () => {
