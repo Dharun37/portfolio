@@ -384,7 +384,8 @@ function App() {
             handle="dharun"
             status="Available for work"
             contactText="Contact Me"
-            avatarUrl="/portava2.png"
+            avatarUrl="/port-image.jpeg"
+            avatarFit="cover"
             iconUrl=""
             grainUrl=""
             innerGradient="linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(51, 65, 85, 0.3) 100%)"
@@ -420,7 +421,7 @@ function App() {
           border: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
           <img 
-            src="/portAva.jpeg" 
+            src="/port-img(croped).jpeg" 
             alt="Dharun"
             style={{
               width: '120px',

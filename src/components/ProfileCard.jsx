@@ -34,7 +34,8 @@ const ProfileCardComponent = ({
   status = 'Online',
   contactText = 'Contact',
   showUserInfo = true,
-  onContactClick
+  onContactClick,
+  avatarFit = 'cover'
 }) => {
   const wrapRef = useRef(null);
   const shellRef = useRef(null);
@@ -317,7 +318,7 @@ const ProfileCardComponent = ({
             <div className="pc-glare" />
             <div className="pc-content pc-avatar-content">
               <img
-                className="avatar"
+                className={`avatar ${avatarFit === 'contain' ? 'avatar--contain' : ''}`}
                 src={avatarUrl}
                 alt={`${name || 'User'} avatar`}
                 loading="lazy"

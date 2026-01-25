@@ -244,7 +244,8 @@
 }
 
 .pc-avatar-content {
-  mix-blend-mode: luminosity;
+  /* mix-blend-mode: luminosity; */
+  mix-blend-mode: normal; /* Use this to keep original image colors */
   overflow: visible;
   transform: translateZ(2);
   backface-visibility: hidden;
@@ -252,6 +253,9 @@
 
 .pc-avatar-content .avatar {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 1%;
   position: absolute;
   left: 50%;
   transform-origin: 50% 100%;
@@ -261,6 +265,18 @@
   backface-visibility: hidden;
   will-change: transform;
   transition: transform 120ms ease-out;
+}
+
+/* No-crop contain mode for avatar; toggled via avatarFit="contain" */
+.pc-avatar-content .avatar--contain {
+  object-fit: contain; /* Fit entire image without cropping */
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  bottom: 0;
+  /* Override dynamic scale/translate to prevent any cropping */
+  transform: translateX(-50%) translateZ(0);
 }
 
 .pc-avatar-content::before {
@@ -370,7 +386,7 @@
 .pc-details {
   width: 100%;
   position: absolute;
-  top: 3em;
+  top: 1.5em; /* Raised heading block so name/title sit higher on the card */
   display: flex;
   flex-direction: column;
 }
